@@ -1,3 +1,5 @@
+console.log("Welcome to the employee wage programs :-) ");
+
 const PART_TIME_HRs=4;
 const FULL_TIME_HRs=8;
 const WAGE_PER_HRs=20;
