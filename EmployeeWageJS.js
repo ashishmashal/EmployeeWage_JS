@@ -40,6 +40,7 @@ while(totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < NUM_OF_WORKING_DAYS)
     empDailyWageArr.push(calcDailyWage(empHrs));
     empDailyHrsMap.set(totalWorkingDays,empHrs);
     empDailyWageMap.set(totalWorkingDays, calcDailyWage(empHrs));
+   
     empDailyHrsAndWageArr.push({
         dayNum :totalWorkingDays,
         dailyHours:empHrs,
@@ -156,3 +157,24 @@ console.log("non Working Days :- " + nonWorkingDays);
 
 
 console.log("UC10 : Showing daily Hours Worked And Dailyh Wages Earned: "+empDailyHrsAndWageArr);
+
+let TotalWages = empDailyHrsAndWageArr.filter(dailyHrsAndWage => dailyHrsAndWage.dailyWage > 0)
+                    .reduce((TotalWages,dailyHrsAndWage) => TotalWages += dailyHrsAndWage.dailyWage,0);
+
+let TotalHours = empDailyHrsAndWageArr.filter(dailyHrsAndWage => dailyHrsAndWage.dailyWage > 0)
+            .reduce((TotalHours,dailyHrsAndWage) => TotalHours += dailyHrsAndWage.dailyHours,0);                    
+console.log("UC11 A Total Hours: "+TotalHours + " Total Wages" + TotalWages ); 
+
+console.log("UC 11B Logging Full Work Days");
+empDailyHrsAndWageArr. filter (dailyHrsAndWage => dailyHrsAndWage.dailyHours == 8) 
+.forEach(dailyHrsAndWage => console.log(dailyHrsAndWage.toString())); 
+
+let partWorkingDayStrArr = empDailyHrsAndWageArr
+                .filter(dailyHrsAndWage=> dailyHrsAndWage.dailyHours == 4)
+                .map(dailyHrsAndWage => dailyHrsAndWage.toString());
+console.log("UC 11C Logging Part Work Days"+partWorkingDayStrArr);
+
+let NonWorkingDayStrArr = empDailyHrsAndWageArr
+                .filter(dailyHrsAndWage=> dailyHrsAndWage.dailyHours == 0)
+                .map(dailyHrsAndWage => dailyHrsAndWage.dayNum);
+console.log("UC 11D Logging Non Work Days"+NonWorkingDayStrArr);
